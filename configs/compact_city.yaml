@@ -1,0 +1,44 @@
+# Synthetic "smaller compact city" scenario - same simulator, different config.
+# Shows how a new city is added without code changes. Illustrative numbers only.
+city:
+  name: compact_city
+  grid_size: 8
+  zone_km: 1.2
+  detour_factor: 1.35
+  daily_requests: 1100
+  hourly_share: [2.5, 1.8, 1.0, 0.6, 0.6, 1.0, 2.0, 4.0, 5.5, 4.0, 3.2, 3.4,
+                 4.0, 3.8, 3.6, 4.0, 5.0, 6.0, 5.5, 4.6, 4.2, 4.4, 4.2, 3.4]
+  speed_kmh_by_hour: [36, 36, 37, 37, 36, 33, 28, 22, 20, 24, 27, 27,
+                      26, 26, 26, 25, 22, 20, 22, 26, 29, 31, 33, 35]
+  base_weight: 0.25
+  hotspots:
+    - {x: 4, y: 3, weight: 3.0, spread: 1.5}    # city centre
+    - {x: 1, y: 6, weight: 0.8, spread: 0.8}    # university campus
+
+fleet:
+  n_vehicles: 40
+  battery_kwh: 60
+  kwh_per_km: 0.18
+  charge_kw: 50
+  low_soc: 0.20
+  target_soc: 0.80
+  reserve_soc: 0.08
+  start_soc_min: 0.50
+  start_soc_max: 0.95
+
+charging_hubs:               # 2 hubs x 4 points = 8 charge points
+  - {x: 4, y: 4, points: 4}
+  - {x: 1, y: 5, points: 4}
+
+pricing:
+  base_fare: 2.50
+  per_km: 1.25
+  per_min: 0.25
+  energy_cost_per_kwh: 0.35
+
+ops:
+  duration_hours: 24
+  dispatch_interval_min: 0.5
+  max_wait_min: 10
+  max_pickup_min: 15
+  policy: greedy
